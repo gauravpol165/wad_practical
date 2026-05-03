@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>To-Do List</h2>
+
+<input type="text" id="taskInput">
+<button onclick="addTask()">Add</button>
+
+<div id="tasks"></div>
+
+<script>
+
+// LOAD TASKS
+function loadTasks() {
+    fetch("/api/tasks")
+    .then(res => res.json())
+    .then(data => {
+        let output = "";
+
+        data.forEach(task => {
+            output += "<div class='card'>" +
+                "<input id='input" + task.id + "' value='" + task.text + "'>" +
+                "<button onclick='updateTask(" + task.id + ")'>Update</button>" +
+                "<button onclick='deleteTask(" + task.id + ")'>Delete</button>" +
+                "</div>";
+        });
+
+        document.getElementById("tasks").innerHTML = output;
+    });
+}
+
+// ADD TASK
+function addTask() {
+    let text = document.getElementById("taskInput").value;
+
+    fetch("/api/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text })
+    })
+    .then(() => {
+        document.getElementById("taskInput").value = "";
+        loadTasks();
+    });
+}
+
+// UPDATE TASK (button click)
+function updateTask(id) {
+    let text = document.getElementById("input" + id).value;
+
+    fetch("/api/tasks/" + id, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text })
+    })
+    .then(() => loadTasks());
+}
+
+// DELETE TASK
+function deleteTask(id) {
+    fetch("/api/tasks/" + id, {
+        method: "DELETE"
+    })
+    .then(() => loadTasks());
+}
+
+// INITIAL LOAD
+loadTasks();
+
+</script>
+
+</body>
+</html>

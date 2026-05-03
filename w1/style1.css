@@ -1,0 +1,35 @@
+body{
+    font-family: Arial;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+}
+th,td{
+    border: 1px solid black;
+    padding: 8px;
+}
+
+th{
+    color: white;
+    background-color: #323232;
+}
+
+td{
+    background-color: rgb(213, 186, 127);
+    color: rgb(112, 108, 143);
+}
+
+img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+button{
+    padding: 6px 10px;
+    margin: 5px;
+    background-color: rgb(68, 180, 68);
+}

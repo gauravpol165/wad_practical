@@ -1,0 +1,8 @@
+[
+    { "id": 1, "name": "Alice", "place": "Pune" },
+    { "id": 2, "name": "Bob", "place": "Mumbai" },
+    { "id": 3, "name": "Charlie", "place": "Ahmedabad" },
+    { "id": 4, "name": "David", "place": "Delhi" },
+    { "id": 5, "name": "Eva", "place": "Bangalore" },
+    { "id": 6, "name": "Frank", "place": "Hyderabad" }
+]

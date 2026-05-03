@@ -1,0 +1,29 @@
+{
+    "kolkata":{
+        "temperature":"32°C",
+        "humidity":"70%",
+        "condition":"Humid"
+    },
+    "pune": {
+        "temperature": "30°C",
+        "humidity": "60%",
+        "condition": "Sunny"
+    },
+    "mumbai": {
+        "temperature": "32°C",
+        "humidity": "70%",
+        "condition": "Humid"
+    },
+    "delhi": {
+        "temperature": "35°C",
+        "humidity": "50%",
+        "condition": "Hot"
+    },
+    "islampur": {
+        "temperature": "28°C",
+        "humidity": "60%",
+        "condition": "Hot"
+    }
+}
+
+

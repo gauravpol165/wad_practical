@@ -1,0 +1,26 @@
+[
+    {
+        "id":1,
+        "name":"Bob",
+        "designation":"Software Developer",
+        "department":"IT",
+        "salary":60000,
+        "image":"img.jpg"
+    },
+     {
+    "id": 2,
+    "name": "Rahul",
+    "designation": "HR Manager",
+    "department": "HR",
+    "salary": 50000,
+    "image":"img1.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Alex",
+    "designation": "Data Analyst",
+    "department": "Analytics",
+    "salary": 55000,
+    "image":"img2.jpg"
+    }
+]

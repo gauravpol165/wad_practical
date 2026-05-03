@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>User List</h2>
+<div id="users"></div>
+
+<script>
+fetch("/api/users")
+.then(res => res.json())
+.then(data => {
+    let output = "";
+    
+    data.forEach(user => {
+       output += "<div class='card'>" +
+          "<h3>" + user.name + "</h3>" +
+          "<p>" + user.place + "</p>" +
+          "</div>";
+    });
+
+    document.getElementById("users").innerHTML = output;
+})
+.catch(err => console.log(err));
+</script>
+
+</body>
+</html>

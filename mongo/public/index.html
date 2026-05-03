@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🎵 Music App</h1>
+
+<button onclick="load('/insert')">Insert Songs</button>
+<button onclick="load('/songs')">View Songs</button>
+
+<h3>Add Song</h3>
+<input id="songname" placeholder="Song Name">
+<input id="film" placeholder="Film">
+<input id="director" placeholder="Director">
+<input id="singer" placeholder="Singer">
+<input id="actor" placeholder="Actor">
+<input id="actress" placeholder="Actress">
+<button onclick="addSong()">Add</button>
+
+<h3>Delete Song</h3>
+<input id="deleteName" placeholder="Song Name">
+<button onclick="deleteSong()">Delete</button>
+
+<h3>Update Actor & Actress</h3>
+<input id="usong" placeholder="Song Name">
+<input id="uactor" placeholder="Actor">
+<input id="uactress" placeholder="Actress">
+<button onclick="updateSong()">Update</button>
+
+<h3>Search</h3>
+<input id="dir" placeholder="Director">
+<input id="sing" placeholder="Singer">
+<button onclick="search()">Director + Singer</button>
+
+<div id="output"></div>
+
+<script>
+function load(url) {
+    fetch(url)
+    .then(res => res.text())
+    .then(data => output.innerHTML = data);
+}
+
+function addSong() {
+    load(`/addsong?songname=${songname.value}&film=${film.value}&director=${director.value}&singer=${singer.value}&actor=${actor.value}&actress=${actress.value}`);
+}
+
+function deleteSong() {
+    load(`/delete/${deleteName.value}`);
+}
+
+function updateSong() {
+    load(`/update?songname=${usong.value}&actor=${uactor.value}&actress=${uactress.value}`);
+}
+
+function search() {
+    fetch(`/director-singer?director=${dir.value}&singer=${sing.value}`)
+    .then(res => res.json())
+    .then(data => {
+        let html = "<ul>";
+        data.forEach(s => {
+            html += `<li>${s.songname}</li>`;
+        });
+        html += "</ul>";
+        output.innerHTML = html;
+    });
+}
+</script>
+
+</body>
+</html>

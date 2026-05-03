@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Directory</title>
+    <style>
+        body{
+            background-color: rgb(120, 187, 190);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #employeelist{
+            display: flex;
+            margin-left: 300px;
+        }
+        img{
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+        }
+        .employee{
+            text-align:center;
+            display: inline-block;
+            margin: 50px;
+            border: 1px solid black ;
+            border-radius: 20px;
+            padding: 20px;
+            background-color: rgb(84, 134, 150);
+            box-shadow: 3px 3px 3px;
+        }
+        .employee:hover{
+            transform:scale(1.03) ;
+            transition: 0.5ms;
+        }
+        h2{
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Employee Details </h2>
+
+    <div id="employeelist"></div>
+
+    <script >
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET','/employees',true);
+
+        xhr.onload = function(){
+            if(xhr.status === 200){
+                var employees = JSON.parse(xhr.responseText);
+
+                var container = document.getElementById('employeelist');
+
+                employees.forEach(function(emp){
+                    var div = document.createElement('div');
+
+                    div.className = 'employee';
+
+                    div.innerHTML = `
+                        <img src="/images/${emp.image}" alt="${emp.name}">
+                        <h3>${emp.name}</h3>
+                        <p><b>Designation : </b>${emp.designation}</p>
+                        <p><b>Department : </b>${emp.department}</p>
+                        <p><b>Salary : </b>${emp.salary}</p>
+                    `;
+
+                    container.appendChild(div);
+                });
+            }else{
+                console.log("Error fetching Data");
+            }
+        };
+
+        xhr.send();
+    </script>
+
+</body>
+</html>

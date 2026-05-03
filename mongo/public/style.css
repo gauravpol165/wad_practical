@@ -1,0 +1,66 @@
+/* body {
+    font-family: Arial;
+    text-align: center;
+    background: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+input {
+    margin: 5px;
+    padding: 8px;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 5px;
+    background: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+th {
+    background: #333;
+    color: white;
+} */
+
+
+
+body {
+    font-family: Arial;
+}
+
+h1 {
+    color: black;
+}
+
+input {
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
