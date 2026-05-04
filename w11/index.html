@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login & Registration</title>
+</head>
+<body>
+
+<h2>Registration</h2>
+<form id="registerForm">
+  Name: <input type="text" id="name"><br><br>
+  Email: <input type="email" id="email"><br><br>
+  Mobile: <input type="text" id="mobile"><br><br>
+  DOB: <input type="date" id="dob"><br><br>
+  City: <input type="text" id="city"><br><br>
+  Address: <input type="text" id="address"><br><br>
+  Password: <input type="password" id="password"><br><br>
+
+  <button type="submit">Register</button>
+</form>
+
+<hr>
+
+<h2>Login</h2>
+<form id="loginForm">
+  Username (Email): <input type="text" id="loginEmail"><br><br>
+  Password: <input type="password" id="loginPassword"><br><br>
+
+  <button type="submit">Login</button>
+</form>
+
+<script>
+
+// Load existing users
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+// 🔹 Registration
+document.getElementById("registerForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let mobile = document.getElementById("mobile").value;
+  let dob = document.getElementById("dob").value;
+  let city = document.getElementById("city").value;
+  let address = document.getElementById("address").value;
+  let password = document.getElementById("password").value;
+
+  // 🔹 Validations
+  if(name=="" || email=="" || mobile=="" || dob=="" || city=="" || address=="" || password==""){
+    alert("All fields are required");
+    return;
+  }
+
+  if(!email.includes("@")){
+    alert("Invalid Email");
+    return;
+  }
+
+  if(mobile.length != 10){
+    alert("Mobile must be 10 digits");
+    return;
+  }
+
+  // 🔹 Create object
+  let user = {name,email,mobile,dob,city,address,password};
+
+  // 🔹 Simulated AJAX POST
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST","/register",true);
+
+  xhr.onload = function(){
+    users.push(user);
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Registered Successfully");
+  };
+
+  xhr.send(JSON.stringify(user));
+});
+
+
+// 🔹 Login
+document.getElementById("loginForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let email = document.getElementById("loginEmail").value;
+  let password = document.getElementById("loginPassword").value;
+
+  let found = users.find(u => u.email === email && u.password === password);
+
+  if(found){
+    alert("Login Successful");
+    window.location.href = "data.html";
+  }else{
+    alert("Invalid Credentials");
+  }
+});
+
+</script>
+
+</body>
+</html>
